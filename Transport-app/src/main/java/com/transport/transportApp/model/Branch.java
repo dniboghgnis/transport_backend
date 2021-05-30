@@ -1,5 +1,6 @@
 package com.transport.transportApp.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +17,7 @@ public class Branch {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "Branch_ID")
+	@Column(name = "Branch_ID", unique = true, nullable = false)
 	private int id;
 	
 	@Column(name = "Branch_Code" , nullable = false)
@@ -25,8 +26,7 @@ public class Branch {
 	@Column(name = "Branch_Name", nullable = false)
 	private String branchName;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Address_ID")
+	@OneToOne(fetch = FetchType.LAZY , mappedBy = "branch", cascade = CascadeType.ALL)
 	private Address address;
 	
 	@Column(name = "Local_Out")

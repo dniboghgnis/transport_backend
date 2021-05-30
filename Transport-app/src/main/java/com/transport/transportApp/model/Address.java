@@ -5,14 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tbl_address")
 public class Address {
 	
 	@Id
-	@Column(name = "Address_ID")
+	@Column(name = "Address_ID", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
@@ -39,6 +43,20 @@ public class Address {
 	
 	@Column(name = "Location")
 	private String location;
+	
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name = "Branch_Id")
+	private Branch branch;
+	
+	
+	public Branch getBranch() {
+		return branch;
+	}
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
+	}
 
 	public int getId() {
 		return id;
