@@ -25,12 +25,18 @@ public class LorryChalan {
 	private Date dateTime;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Branch_Id")
+	@JoinColumn(name = "Branch_Id_1")
 	private Branch from;
 	
+	@Column(name = "Branch_Id_1", insertable = false, updatable = false)
+	private Integer branchId1;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Branch_Id")
+	@JoinColumn(name = "Branch_Id_2")
 	private Branch To;
+	
+	@Column(name = "Branch_Id_2", insertable = false, updatable = false)
+	private Integer branchId2;
 	
 	@Column(name = "Lorry_Number")
 	private String lorryNumber;
@@ -51,11 +57,40 @@ public class LorryChalan {
 	private float balanceRemaining;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Branch_Id")
+	@JoinColumn(name = "Branch_Id_3")
 	private Branch payableAt;
+	
+	@Column(name = "Branch_Id_3", insertable = false, updatable = false)
+	private Integer branchId3;
 	
 	@Column(name = "Payable_Date")
 	private Date payableDate;
+	
+	
+
+	public Integer getBranchId1() {
+		return branchId1;
+	}
+
+	public void setBranchId1(Integer branchId1) {
+		this.branchId1 = branchId1;
+	}
+
+	public Integer getBranchId2() {
+		return branchId2;
+	}
+
+	public void setBranchId2(Integer branchId2) {
+		this.branchId2 = branchId2;
+	}
+
+	public Integer getBranchId3() {
+		return branchId3;
+	}
+
+	public void setBranchId3(Integer branchId3) {
+		this.branchId3 = branchId3;
+	}
 
 	public int getId() {
 		return id;
@@ -155,17 +190,13 @@ public class LorryChalan {
 
 	@Override
 	public String toString() {
-		return "LorryChalan [id=" + id + ", dateTime=" + dateTime + ", from=" + from + ", To=" + To + ", lorryNumber="
-				+ lorryNumber + ", totalWeight=" + totalWeight + ", ratePerTon=" + ratePerTon + ", freight=" + freight
-				+ ", advancePaid=" + advancePaid + ", balanceRemaining=" + balanceRemaining + ", payableAt=" + payableAt
-				+ ", payableDate=" + payableDate + ", getId()=" + getId() + ", getDateTime()=" + getDateTime()
-				+ ", getFrom()=" + getFrom() + ", getTo()=" + getTo() + ", getLorryNumber()=" + getLorryNumber()
-				+ ", getTotalWeight()=" + getTotalWeight() + ", getRatePerTon()=" + getRatePerTon() + ", getFreight()="
-				+ getFreight() + ", getAdvancePaid()=" + getAdvancePaid() + ", getBalanceRemaining()="
-				+ getBalanceRemaining() + ", getPayableAt()=" + getPayableAt() + ", getPayableDate()="
-				+ getPayableDate() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+		return "LorryChalan [id=" + id + ", dateTime=" + dateTime + ", from=" + from + ", branchId1=" + branchId1
+				+ ", To=" + To + ", branchId2=" + branchId2 + ", lorryNumber=" + lorryNumber + ", totalWeight="
+				+ totalWeight + ", ratePerTon=" + ratePerTon + ", freight=" + freight + ", advancePaid=" + advancePaid
+				+ ", balanceRemaining=" + balanceRemaining + ", payableAt=" + payableAt + ", branchId3=" + branchId3
+				+ ", payableDate=" + payableDate + "]";
 	}
-	
+
+
 	
 }
