@@ -29,16 +29,25 @@ public class Manifest {
 	private Date dateTime;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Truck_Id")
+	@JoinColumn(name = "Truck_Id_1")
 	private Truck truckRef;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Branch_Id")
-	private Branch from;
+	@Column(name = "Truck_Id_1", insertable = false, updatable = false)
+	private Integer truckId1;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Branch_Id")
+	@JoinColumn(name = "Branch_Id_1")
+	private Branch from;
+	
+	@Column(name = "Branch_Id_1", insertable = false, updatable = false)
+	private Integer branchId1;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Branch_Id_2")
 	private Branch to;
+	
+	@Column(name = "Branch_Id_2", insertable = false, updatable = false)
+	private Integer branchId2;
 	
 	@Column(name = "Eway_Bill")
 	private String ewayBill;
@@ -47,11 +56,48 @@ public class Manifest {
 	private int lastSerialNumber;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Truck_Id")
+	@JoinColumn(name = "Truck_Id_2")
 	private Truck ownerSName;
+	
+	@Column(name = "Truck_Id_2", insertable = false, updatable = false)
+	private Integer truckId2;
 	
 	@Column(name = "Consignment_Id")
 	private List<String> consignmentId;
+	
+	
+
+	public Integer getTruckId1() {
+		return truckId1;
+	}
+
+	public void setTruckId1(Integer truckId1) {
+		this.truckId1 = truckId1;
+	}
+
+	public Integer getBranchId1() {
+		return branchId1;
+	}
+
+	public void setBranchId1(Integer branchId1) {
+		this.branchId1 = branchId1;
+	}
+
+	public Integer getBranchId2() {
+		return branchId2;
+	}
+
+	public void setBranchId2(Integer branchId2) {
+		this.branchId2 = branchId2;
+	}
+
+	public Integer getTruckId2() {
+		return truckId2;
+	}
+
+	public void setTruckId2(Integer truckId2) {
+		this.truckId2 = truckId2;
+	}
 
 	public int getId() {
 		return id;
@@ -136,9 +182,12 @@ public class Manifest {
 	@Override
 	public String toString() {
 		return "Manifest [id=" + id + ", manifestNumber=" + manifestNumber + ", dateTime=" + dateTime + ", truckRef="
-				+ truckRef + ", from=" + from + ", to=" + to + ", ewayBill=" + ewayBill + ", lastSerialNumber="
-				+ lastSerialNumber + ", ownerSName=" + ownerSName + ", consignmentId=" + consignmentId + "]";
+				+ truckRef + ", truckId1=" + truckId1 + ", from=" + from + ", branchId1=" + branchId1 + ", to=" + to
+				+ ", branchId2=" + branchId2 + ", ewayBill=" + ewayBill + ", lastSerialNumber=" + lastSerialNumber
+				+ ", ownerSName=" + ownerSName + ", truckId2=" + truckId2 + ", consignmentId=" + consignmentId + "]";
 	}
+
+	
 	
 	
 
