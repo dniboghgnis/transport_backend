@@ -13,8 +13,24 @@ public class AddressService {
 	@Autowired
 	private AddressRepository addressRepository;
 	
-	public List<Address> getAddress(){
+	public List<Address> getAllAddress(){
 		return addressRepository.findAll();
+	}
+	
+	public Address findById(int addressId) {
+		return addressRepository.getOne(addressId);
+	}
+	
+	public void addAddress(Address address) {
+		addressRepository.save(address);
+	}
+	
+	public void updateAddress(Address address) {
+		addressRepository.save(address);
+	}
+	
+	public void deleteAddress(int addressId) {
+		addressRepository.deleteById(addressId);
 	}
 
 }
