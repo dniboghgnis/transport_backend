@@ -21,8 +21,9 @@ public class AddressService {
 		return addressRepository.getOne(addressId);
 	}
 	
-	public void addAddress(Address address) {
-		addressRepository.save(address);
+	public Address addAddress(Address address) {
+		Address newAddress = addressRepository.save(address);
+		return newAddress;
 	}
 	
 	public void updateAddress(Address address) {
