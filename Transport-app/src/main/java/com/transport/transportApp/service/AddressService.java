@@ -25,12 +25,11 @@ public class AddressService {
 	}
 	
 	public Address addAddress(Address address) {
-		Address newAddress = addressRepository.save(address);
-		return newAddress;
+		return addressRepository.save(address);
 	}
 	
-	public void updateAddress(Address address) {
-		addressRepository.save(address);
+	public void updateAddress(int addressId) {
+	
 	}
 	
 	public void deleteAddress(int addressId) {
