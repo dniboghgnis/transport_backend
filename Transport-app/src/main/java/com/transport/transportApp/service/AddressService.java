@@ -18,7 +18,10 @@ public class AddressService {
 	}
 	
 	public Address findById(int addressId) {
-		return addressRepository.getOne(addressId);
+		Optional<Address> address =  addressRepository.findById(addressId);
+		Address getAddress = address.get();
+		return getAddress;
+		
 	}
 	
 	public Address addAddress(Address address) {
