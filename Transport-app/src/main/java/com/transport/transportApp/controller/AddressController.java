@@ -3,6 +3,7 @@ package com.transport.transportApp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,21 +39,27 @@ public class AddressController {
 	}
 	
 	@GetMapping("/address/{id}")
-	public Address getAddress(@PathVariable int id) {
-		Address address = addressService.findById(id);
-		return address;
-	}
-	
-	@DeleteMapping(path = "/address/{id}")
-	public String deleteAddress(@PathVariable int id) {
-		 addressService.deleteAddress(id);
-		return "user deleted sucessfully";
+	public ResponseEntity<Address> getAddress(@PathVariable(value = "id") int addressId) {
+		Address address = addressService.findById(addressId);
+		return ResponseEntity.ok().body(address);
 	}
 	
 	@PostMapping("/address")
 	public Address createAddress(@RequestBody Address address){
-		Address savedAddress = addressService.addAddress(address);
-		return savedAddress;
+		return addressService.addAddress(address);
+		 
 	}
+	
+	@DeleteMapping(path = "/address/{id}")
+	public Map<String, Boolean> deleteAddress(@PathVariable(value = "id") int addressId) {
+		
+		Address address = addressService.findById(addressId);
+		addressService.deleteAddress(address);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return response;
+		 
+	}
+	
 
 }
