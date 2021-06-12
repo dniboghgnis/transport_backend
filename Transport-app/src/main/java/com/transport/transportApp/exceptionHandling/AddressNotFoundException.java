@@ -1,4 +1,4 @@
-package com.transport.transportApp.exception;
+package com.transport.transportApp.exceptionHandling;
 
 public class AddressNotFoundException extends RuntimeException {
 
