@@ -19,6 +19,7 @@ public class AddressService {
 		return addressRepository.findAll();
 	}
 	
+	/***Method to get the address by ID***/
 	public Optional<Address> getAddress(int addressId) {
 		Optional<Address> address =  addressRepository.findById(addressId);
 		if(!address.isPresent()) {
@@ -27,7 +28,21 @@ public class AddressService {
 			return address;
 		}
 			
-}
+	}
+	
+	/***Update an address for a given addressID***/
+	public Address updateAddress(int addressId, Address address) {
+		
+		Optional<Address> addressOptional = addressRepository.findById(addressId);
+		
+		if(!addressOptional.isPresent()) {
+			throw new AddressNotFoundException(addressId);
+		}else {
+			return addressRepository.save(address);
+		}
+	}
+	
+	
 	
 	public Address addAddress(Address address) {
 		return addressRepository.save(address);
