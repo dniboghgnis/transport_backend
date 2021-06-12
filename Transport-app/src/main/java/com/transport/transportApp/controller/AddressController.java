@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -45,23 +46,25 @@ public class AddressController {
 		return ResponseEntity.ok().body(addressService.getAddress(addressId));
 	}
 	
+	@PutMapping("/address/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<Address> updateAddress(@RequestBody Address address, @PathVariable int addressId){
+		return ResponseEntity.ok().body(addressService.updateAddress(addressId, address));
+	}
+	
 	@PostMapping("/address")
+	@ResponseStatus(HttpStatus.CREATED)
 	public Address createAddress(@RequestBody Address address){
 		return addressService.addAddress(address);
 		 
 	}
 	
-	/**
+	
 	@DeleteMapping(path = "/address/{id}")
-	public Map<String, Boolean> deleteAddress(@PathVariable(value = "id") int addressId) {
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteAddress(@PathVariable int addressId) {
 		
-		Address address = addressService.findById(addressId);
-		addressService.deleteAddress(address);
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
-		return response;
-		 
+		addressService.deleteAddress(addressId); 
 	}
-	**/
-
+	
 }
