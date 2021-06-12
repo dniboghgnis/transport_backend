@@ -16,7 +16,8 @@ import javax.persistence.Table;
 @Table(name = "tbl_bill")
 public class Bill implements Serializable {
 	
-	private static final long serialVersionUID = 2L;
+	
+	//private static final long serialVersionUID = 2L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

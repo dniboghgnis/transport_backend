@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.transport.transportApp.repository.AddressRepository;
 import java.util.*;
+
+import com.transport.transportApp.exception.AddressNotFoundException;
 import com.transport.transportApp.model.*;
 
 @Service
@@ -17,12 +19,15 @@ public class AddressService {
 		return addressRepository.findAll();
 	}
 	
-	public Address findById(int addressId) {
+	public Optional<Address> getAddress(int addressId) {
 		Optional<Address> address =  addressRepository.findById(addressId);
-		Address getAddress = address.get();
-		return getAddress;
-		
-	}
+		if(!address.isPresent()) {
+			throw new AddressNotFoundException(addressId);
+		}else {
+			return address;
+		}
+			
+}
 	
 	public Address addAddress(Address address) {
 		return addressRepository.save(address);

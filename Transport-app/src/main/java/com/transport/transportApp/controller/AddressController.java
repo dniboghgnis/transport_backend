@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.transport.transportApp.service.AddressService;
@@ -39,9 +40,9 @@ public class AddressController {
 	}
 	
 	@GetMapping("/address/{id}")
-	public ResponseEntity<Address> getAddress(@PathVariable(value = "id") int addressId) {
-		Address address = addressService.findById(addressId);
-		return ResponseEntity.ok().body(address);
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<Optional<Address>> getAddress(@PathVariable(value = "id") int addressId) {
+		return ResponseEntity.ok().body(addressService.getAddress(addressId));
 	}
 	
 	@PostMapping("/address")
@@ -50,6 +51,7 @@ public class AddressController {
 		 
 	}
 	
+	/**
 	@DeleteMapping(path = "/address/{id}")
 	public Map<String, Boolean> deleteAddress(@PathVariable(value = "id") int addressId) {
 		
@@ -60,6 +62,6 @@ public class AddressController {
 		return response;
 		 
 	}
-	
+	**/
 
 }
