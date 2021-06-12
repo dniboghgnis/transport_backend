@@ -15,6 +15,7 @@ public class AddressService {
 	@Autowired
 	private AddressRepository addressRepository;
 	
+	/***Method to get all the address***/
 	public List<Address> getAllAddress(){
 		return addressRepository.findAll();
 	}
@@ -28,6 +29,11 @@ public class AddressService {
 			return address;
 		}
 			
+	}
+	
+	/***Adding a new address***/
+	public Address addAddress(Address address) {
+		return addressRepository.save(address);
 	}
 	
 	/***Update an address for a given addressID***/
@@ -44,16 +50,15 @@ public class AddressService {
 	
 	
 	
-	public Address addAddress(Address address) {
-		return addressRepository.save(address);
-	}
-	
-	public void updateAddress(int addressId) {
-	
-	}
-	
-	public void deleteAddress(Address address) {
-		addressRepository.delete(address);
+	/***Delete an address for a given addressID***/
+	public void deleteAddress(int addressId) {
+		
+		Optional<Address> addressOptional = addressRepository.findById(addressId);
+		if(!addressOptional.isPresent()) {
+			throw new AddressNotFoundException(addressId);
+		}else {
+			addressRepository.deleteById(addressId);
+		}
 	}
 
 }
