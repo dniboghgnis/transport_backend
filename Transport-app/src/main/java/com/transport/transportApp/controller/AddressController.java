@@ -21,7 +21,7 @@ import com.transport.transportApp.model.*;
 import java.util.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v1")
 public class AddressController {
 	

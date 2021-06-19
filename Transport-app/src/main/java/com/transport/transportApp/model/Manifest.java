@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -62,10 +63,16 @@ public class Manifest {
 	@Column(name = "Truck_Id_2", insertable = false, updatable = false)
 	private Integer truckId2;
 	
+	@OneToMany(fetch = FetchType.LAZY)
 	@Column(name = "Consignment_Id")
-	private List<String> consignmentId;
+	private List<Consignment> consignmentId;
 	
 	
+	
+
+	public void setConsignmentId(List<Consignment> consignmentId) {
+		this.consignmentId = consignmentId;
+	}
 
 	public Integer getTruckId1() {
 		return truckId1;
@@ -171,13 +178,8 @@ public class Manifest {
 		this.ownerSName = ownerSName;
 	}
 
-	public List<String> getConsignmentId() {
-		return consignmentId;
-	}
+	
 
-	public void setConsignmentId(List<String> consignmentId) {
-		this.consignmentId = consignmentId;
-	}
 
 	@Override
 	public String toString() {

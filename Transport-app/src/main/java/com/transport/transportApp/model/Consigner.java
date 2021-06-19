@@ -2,6 +2,7 @@ package com.transport.transportApp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,10 +20,12 @@ public class Consigner {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "Consigner_Id")
+	//@Column(name = "Consigner_Id")
 	private int id;
 	
-	@Column(name = "Account_Type")
+	
+	//@Column(name = "Account_Type")
+	@Enumerated(EnumType.STRING)
 	private AccountType accountType;
 	
 	
@@ -33,10 +36,10 @@ public class Consigner {
 	@Column(name = "Address_Id_1", insertable = false, updatable = false)
 	private Integer partyAddressId1;
 	
-	@Column(name = "Opening_Balance")
+	//@Column(name = "Opening_Balance")
 	private double openingBalance;
 	
-	@Column(name = "Consigner_Name")
+	//@Column(name = "Consigner_Name")
 	private String consignerName;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -49,13 +52,13 @@ public class Consigner {
 	@Column(name = "Tin_Number_Sst_No")
 	private String tinNumberSstNo;
 	
-	@Column(name = "Gst_Number")
+	//@Column(name = "Gst_Number")
 	private String gstNumber;
 	
-	@Column(name = "To_Be_Billed")
+	//@Column(name = "To_Be_Billed")
 	private boolean toBeBilled;
 	
-	@Column(name = "Bill_Party_Name")
+	//@Column(name = "Bill_Party_Name")
 	private String billPartyName;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -72,13 +75,13 @@ public class Consigner {
 	@Column(name = "Address_Id_4", insertable = false, updatable = false)
 	private Integer partyAddressId4;
 	
-	@Column(name = "Account_Code")
+	//@Column(name = "Account_Code")
 	private String accountCode;
 	
 	@Column(name = "Bill_Party_Gst_Number")
 	private String billPartyGstNumber;
 	
-	@Column(name = "Description")
+	//@Column(name = "Description")
 	private String description;
 
 	public int getId() {
