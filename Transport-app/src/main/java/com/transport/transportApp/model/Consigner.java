@@ -28,7 +28,6 @@ public class Consigner {
 	@Enumerated(EnumType.STRING)
 	private AccountType accountType;
 	
-	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Address_Id_1")
 	private Address partyAddress;

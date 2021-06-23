@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -26,11 +27,25 @@ public class Branch {
 	@Column(name = "Branch_Name", nullable = false)
 	private String branchName;
 	
-	@OneToOne(fetch = FetchType.LAZY , mappedBy = "branch", cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Address_Id")
 	private Address address;
+	
+	@Column(name = "Address_Id", insertable = false, updatable = false)
+	private Integer address_Id;
 	
 	@Column(name = "Local_Out")
 	private String localOut;
+	
+	
+
+	public Integer getAddress_Id() {
+		return address_Id;
+	}
+
+	public void setAddress_Id(Integer address_Id) {
+		this.address_Id = address_Id;
+	}
 
 	public int getId() {
 		return id;

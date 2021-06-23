@@ -48,6 +48,7 @@ public class Address implements Serializable {
 	@Column(name = "Location")
 	private String location;
 	
+	/**
 	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "Branch_Id")
@@ -60,7 +61,7 @@ public class Address implements Serializable {
 
 	public void setBranch(Branch branch) {
 		this.branch = branch;
-	}
+	}**/
 
 	public int getId() {
 		return id;
