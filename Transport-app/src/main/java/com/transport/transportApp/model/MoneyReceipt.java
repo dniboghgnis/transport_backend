@@ -14,13 +14,13 @@ public class MoneyReceipt {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Mr_Id", unique = true, nullable = false)
-	private long mrId;
+	private String mrId;
 
-	public long getMrId() {
+	public String getMrId() {
 		return mrId;
 	}
 
-	public void setMrId(long mrId) {
+	public void setMrId(String mrId) {
 		this.mrId = mrId;
 	}
 

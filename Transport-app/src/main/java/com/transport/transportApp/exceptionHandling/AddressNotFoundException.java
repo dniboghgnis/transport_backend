@@ -1,8 +1,12 @@
 package com.transport.transportApp.exceptionHandling;
 
-public class AddressNotFoundException extends RuntimeException {
+import java.io.Serializable;
 
+public class AddressNotFoundException extends RuntimeException implements Serializable{
+	
+	static final long serialVersionUID = 2L;
+	
 	public AddressNotFoundException(int addressId) {
-		super("Could not find address with addressId" + addressId + ".");
+		super("Could not find address with addressId" + addressId + " "+".");
 	}
 }

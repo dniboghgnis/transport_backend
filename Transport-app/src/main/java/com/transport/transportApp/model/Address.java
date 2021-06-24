@@ -48,20 +48,23 @@ public class Address implements Serializable {
 	@Column(name = "Location")
 	private String location;
 	
-	/**
-	@JsonIgnore
-	@OneToOne
-	@JoinColumn(name = "Branch_Id")
-	private Branch branch;
-	
-	
-	public Branch getBranch() {
-		return branch;
+	public Address() {
+		
 	}
 
-	public void setBranch(Branch branch) {
-		this.branch = branch;
-	}**/
+	public Address(int id, String address, String address1, String address2, String disctrict, String city,
+			String postalCode, String phone, String location) {
+		super();
+		this.id = id;
+		this.address = address;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.disctrict = disctrict;
+		this.city = city;
+		this.postalCode = postalCode;
+		this.phone = phone;
+		this.location = location;
+	}
 
 	public int getId() {
 		return id;
@@ -143,5 +146,23 @@ public class Address implements Serializable {
 	}
 	
 	
+	
+	/**
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name = "Branch_Id")
+	private Branch branch;
+	
+	
+	public Branch getBranch() {
+		return branch;
+	}
 
+	public void setBranch(Branch branch) {
+		this.branch = branch;
+	}**/
+	
+	
+	
+	
 }
