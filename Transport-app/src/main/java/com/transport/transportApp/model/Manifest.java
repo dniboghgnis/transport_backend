@@ -30,24 +30,24 @@ public class Manifest {
 	private Date dateTime;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Truck_Id_1")
-	private Truck truckRef;
+	@JoinColumn(name = "Truck_Number")
+	private Truck truckNumber;
 	
-	@Column(name = "Truck_Id_1", insertable = false, updatable = false)
-	private Integer truckId1;
+	@Column(name = "Truck_Number", insertable = false, updatable = false)
+	private Integer truckId;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Branch_Id_1")
+	@JoinColumn(name = "From")
 	private Branch from;
 	
-	@Column(name = "Branch_Id_1", insertable = false, updatable = false)
+	@Column(name = "From", insertable = false, updatable = false)
 	private Integer branchId1;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Branch_Id_2")
+	@JoinColumn(name = "To")
 	private Branch to;
 	
-	@Column(name = "Branch_Id_2", insertable = false, updatable = false)
+	@Column(name = "To", insertable = false, updatable = false)
 	private Integer branchId2;
 	
 	@Column(name = "Eway_Bill")
@@ -56,53 +56,31 @@ public class Manifest {
 	@Column(name = "Last_Serial_Number")
 	private int lastSerialNumber;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Truck_Id_2")
-	private Truck ownerSName;
-	
-	@Column(name = "Truck_Id_2", insertable = false, updatable = false)
-	private Integer truckId2;
-	
 	@OneToMany(fetch = FetchType.LAZY)
 	@Column(name = "Consignment_Id")
 	private List<Consignment> consignmentId;
+
 	
+	public Manifest() {
+		
+	}
 	
-
-	public void setConsignmentId(List<Consignment> consignmentId) {
-		this.consignmentId = consignmentId;
-	}
-
-	public Integer getTruckId1() {
-		return truckId1;
-	}
-
-	public void setTruckId1(Integer truckId1) {
-		this.truckId1 = truckId1;
-	}
-
-	public Integer getBranchId1() {
-		return branchId1;
-	}
-
-	public void setBranchId1(Integer branchId1) {
+	public Manifest(int id, int manifestNumber, Date dateTime, Truck truckNumber, Integer truckId, Branch from,
+			Integer branchId1, Branch to, Integer branchId2, String ewayBill, int lastSerialNumber,
+			List<Consignment> consignmentId) {
+		super();
+		this.id = id;
+		this.manifestNumber = manifestNumber;
+		this.dateTime = dateTime;
+		this.truckNumber = truckNumber;
+		this.truckId = truckId;
+		this.from = from;
 		this.branchId1 = branchId1;
-	}
-
-	public Integer getBranchId2() {
-		return branchId2;
-	}
-
-	public void setBranchId2(Integer branchId2) {
+		this.to = to;
 		this.branchId2 = branchId2;
-	}
-
-	public Integer getTruckId2() {
-		return truckId2;
-	}
-
-	public void setTruckId2(Integer truckId2) {
-		this.truckId2 = truckId2;
+		this.ewayBill = ewayBill;
+		this.lastSerialNumber = lastSerialNumber;
+		this.consignmentId = consignmentId;
 	}
 
 	public int getId() {
@@ -129,12 +107,20 @@ public class Manifest {
 		this.dateTime = dateTime;
 	}
 
-	public Truck getTruckRef() {
-		return truckRef;
+	public Truck getTruckNumber() {
+		return truckNumber;
 	}
 
-	public void setTruckRef(Truck truckRef) {
-		this.truckRef = truckRef;
+	public void setTruckNumber(Truck truckNumber) {
+		this.truckNumber = truckNumber;
+	}
+
+	public Integer getTruckId() {
+		return truckId;
+	}
+
+	public void setTruckId(Integer truckId) {
+		this.truckId = truckId;
 	}
 
 	public Branch getFrom() {
@@ -145,12 +131,28 @@ public class Manifest {
 		this.from = from;
 	}
 
+	public Integer getBranchId1() {
+		return branchId1;
+	}
+
+	public void setBranchId1(Integer branchId1) {
+		this.branchId1 = branchId1;
+	}
+
 	public Branch getTo() {
 		return to;
 	}
 
 	public void setTo(Branch to) {
 		this.to = to;
+	}
+
+	public Integer getBranchId2() {
+		return branchId2;
+	}
+
+	public void setBranchId2(Integer branchId2) {
+		this.branchId2 = branchId2;
 	}
 
 	public String getEwayBill() {
@@ -169,27 +171,23 @@ public class Manifest {
 		this.lastSerialNumber = lastSerialNumber;
 	}
 
-	public Truck getOwnerSName() {
-		return ownerSName;
+	public List<Consignment> getConsignmentId() {
+		return consignmentId;
 	}
 
-	public void setOwnerSName(Truck ownerSName) {
-		this.ownerSName = ownerSName;
+	public void setConsignmentId(List<Consignment> consignmentId) {
+		this.consignmentId = consignmentId;
 	}
-
-	
-
 
 	@Override
 	public String toString() {
-		return "Manifest [id=" + id + ", manifestNumber=" + manifestNumber + ", dateTime=" + dateTime + ", truckRef="
-				+ truckRef + ", truckId1=" + truckId1 + ", from=" + from + ", branchId1=" + branchId1 + ", to=" + to
+		return "Manifest [id=" + id + ", manifestNumber=" + manifestNumber + ", dateTime=" + dateTime + ", truckNumber="
+				+ truckNumber + ", truckId=" + truckId + ", from=" + from + ", branchId1=" + branchId1 + ", to=" + to
 				+ ", branchId2=" + branchId2 + ", ewayBill=" + ewayBill + ", lastSerialNumber=" + lastSerialNumber
-				+ ", ownerSName=" + ownerSName + ", truckId2=" + truckId2 + ", consignmentId=" + consignmentId + "]";
+				+ ", consignmentId=" + consignmentId + "]";
 	}
+	
+	
 
 	
-	
-	
-
 }
