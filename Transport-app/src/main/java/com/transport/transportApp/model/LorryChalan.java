@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 
+
+
 @Entity
 public class LorryChalan {
 	
@@ -27,22 +29,24 @@ public class LorryChalan {
 	private Date challanDate;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "From")
-	private Branch from;
+	@JoinColumn(name = "From_Branch")
+	private Branch fromBranch;
 	
-	@Column(name = "From", insertable = false, updatable = false)
+	@Column(name = "From_Branch", insertable = false, updatable = false)
 	private Integer branchId1;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "To")
+	@JoinColumn(name = "To_Branch")
 	private Branch to;
 	
-	@Column(name = "To", insertable = false, updatable = false)
+	@Column(name = "To_Branch", insertable = false, updatable = false)
 	private Integer branchId2;
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Truck_Id")
 	private Truck truckId;
+	
 	
 	@Column(name = "Truck_Id", insertable = false, updatable = false)
 	private Integer truckId1;
@@ -75,16 +79,16 @@ public class LorryChalan {
 	public LorryChalan() {
 		
 	}
-
-
-	public LorryChalan(int id, String challanNumber, Date challanDate, Branch from, Integer branchId1, Branch to,
+	 
+	
+	public LorryChalan(int id, String challanNumber, Date challanDate, Branch fromBranch, Integer branchId1, Branch to,
 			Integer branchId2, Truck truckId, Integer truckId1, float totalWeight, float ratePerTon, float freight,
 			float advancePaid, float balanceRemaining, Branch payableAt, Integer branchId3, Date paymentDate) {
 		super();
 		this.id = id;
 		this.challanNumber = challanNumber;
 		this.challanDate = challanDate;
-		this.from = from;
+		this.fromBranch = fromBranch;
 		this.branchId1 = branchId1;
 		this.to = to;
 		this.branchId2 = branchId2;
@@ -100,8 +104,17 @@ public class LorryChalan {
 		this.paymentDate = paymentDate;
 	}
 
-	 
-	
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 	public String getChallanNumber() {
 		return challanNumber;
 	}
@@ -122,137 +135,156 @@ public class LorryChalan {
 	}
 
 
-	public int getId() {
-		return id;
+	public Branch getFromBranch() {
+		return fromBranch;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+
+	public void setFromBranch(Branch fromBranch) {
+		this.fromBranch = fromBranch;
 	}
 
-	
-
-	public Branch getFrom() {
-		return from;
-	}
-
-	public void setFrom(Branch from) {
-		this.from = from;
-	}
 
 	public Integer getBranchId1() {
 		return branchId1;
 	}
 
+
 	public void setBranchId1(Integer branchId1) {
 		this.branchId1 = branchId1;
 	}
+
 
 	public Branch getTo() {
 		return to;
 	}
 
+
 	public void setTo(Branch to) {
 		this.to = to;
 	}
+
 
 	public Integer getBranchId2() {
 		return branchId2;
 	}
 
+
 	public void setBranchId2(Integer branchId2) {
 		this.branchId2 = branchId2;
 	}
+
 
 	public Truck getTruckId() {
 		return truckId;
 	}
 
+
 	public void setTruckId(Truck truckId) {
 		this.truckId = truckId;
 	}
+
 
 	public Integer getTruckId1() {
 		return truckId1;
 	}
 
+
 	public void setTruckId1(Integer truckId1) {
 		this.truckId1 = truckId1;
 	}
+
 
 	public float getTotalWeight() {
 		return totalWeight;
 	}
 
+
 	public void setTotalWeight(float totalWeight) {
 		this.totalWeight = totalWeight;
 	}
+
 
 	public float getRatePerTon() {
 		return ratePerTon;
 	}
 
+
 	public void setRatePerTon(float ratePerTon) {
 		this.ratePerTon = ratePerTon;
 	}
+
 
 	public float getFreight() {
 		return freight;
 	}
 
+
 	public void setFreight(float freight) {
 		this.freight = freight;
 	}
+
 
 	public float getAdvancePaid() {
 		return advancePaid;
 	}
 
+
 	public void setAdvancePaid(float advancePaid) {
 		this.advancePaid = advancePaid;
 	}
+
 
 	public float getBalanceRemaining() {
 		return balanceRemaining;
 	}
 
+
 	public void setBalanceRemaining(float balanceRemaining) {
 		this.balanceRemaining = balanceRemaining;
 	}
+
 
 	public Branch getPayableAt() {
 		return payableAt;
 	}
 
+
 	public void setPayableAt(Branch payableAt) {
 		this.payableAt = payableAt;
 	}
+
 
 	public Integer getBranchId3() {
 		return branchId3;
 	}
 
+
 	public void setBranchId3(Integer branchId3) {
 		this.branchId3 = branchId3;
 	}
+
 
 	public Date getPaymentDate() {
 		return paymentDate;
 	}
 
+
 	public void setPaymentDate(Date paymentDate) {
 		this.paymentDate = paymentDate;
 	}
 
+
 	@Override
 	public String toString() {
-		return "LorryChalan [id=" + id + ", from=" + from + ", branchId1=" + branchId1
-				+ ", to=" + to + ", branchId2=" + branchId2 + ", truckId=" + truckId + ", truckId1=" + truckId1
-				+ ", totalWeight=" + totalWeight + ", ratePerTon=" + ratePerTon + ", freight=" + freight
-				+ ", advancePaid=" + advancePaid + ", balanceRemaining=" + balanceRemaining + ", payableAt=" + payableAt
-				+ ", branchId3=" + branchId3 + ", paymentDate=" + paymentDate + "]";
+		return "LorryChalan [id=" + id + ", challanNumber=" + challanNumber + ", challanDate=" + challanDate
+				+ ", fromBranch=" + fromBranch + ", branchId1=" + branchId1 + ", to=" + to + ", branchId2=" + branchId2
+				+ ", truckId=" + truckId + ", truckId1=" + truckId1 + ", totalWeight=" + totalWeight + ", ratePerTon="
+				+ ratePerTon + ", freight=" + freight + ", advancePaid=" + advancePaid + ", balanceRemaining="
+				+ balanceRemaining + ", payableAt=" + payableAt + ", branchId3=" + branchId3 + ", paymentDate="
+				+ paymentDate + "]";
 	}
-	
-	
+
+
 	
 }

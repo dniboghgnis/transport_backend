@@ -25,8 +25,8 @@ public class Manifest {
 	@Column(name = "Manifest_Number")
 	private int manifestNumber;
 	
-	@Column(name = "Date_Time")
-	private Date dateTime;
+	@Column(name = "Manifest_Date")
+	private Date manifestDate;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Truck_Number")
@@ -36,17 +36,17 @@ public class Manifest {
 	private Integer truckId;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "From")
-	private Branch from;
+	@JoinColumn(name = "From_Branch")
+	private Branch fromBranch;
 	
-	@Column(name = "From", insertable = false, updatable = false)
+	@Column(name = "From_Branch", insertable = false, updatable = false)
 	private Integer branchId1;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "To")
-	private Branch to;
+	@JoinColumn(name = "To_Branch")
+	private Branch toBranch;
 	
-	@Column(name = "To", insertable = false, updatable = false)
+	@Column(name = "To_Branch", insertable = false, updatable = false)
 	private Integer branchId2;
 	
 	@Column(name = "Eway_Bill")
@@ -59,23 +59,22 @@ public class Manifest {
 	@Column(name = "Consignment_Id")
 	private List<Consignment> consignmentId;
 
-	
 	public Manifest() {
 		
 	}
 	
-	public Manifest(int id, int manifestNumber, Date dateTime, Truck truckNumber, Integer truckId, Branch from,
-			Integer branchId1, Branch to, Integer branchId2, String ewayBill, int lastSerialNumber,
-			List<Consignment> consignmentId) {
+	public Manifest(int id, int manifestNumber, Date manifestDate, Truck truckNumber, Integer truckId,
+			Branch fromBranch, Integer branchId1, Branch toBranch, Integer branchId2, String ewayBill,
+			int lastSerialNumber, List<Consignment> consignmentId) {
 		super();
 		this.id = id;
 		this.manifestNumber = manifestNumber;
-		this.dateTime = dateTime;
+		this.manifestDate = manifestDate;
 		this.truckNumber = truckNumber;
 		this.truckId = truckId;
-		this.from = from;
+		this.fromBranch = fromBranch;
 		this.branchId1 = branchId1;
-		this.to = to;
+		this.toBranch = toBranch;
 		this.branchId2 = branchId2;
 		this.ewayBill = ewayBill;
 		this.lastSerialNumber = lastSerialNumber;
@@ -98,12 +97,12 @@ public class Manifest {
 		this.manifestNumber = manifestNumber;
 	}
 
-	public Date getDateTime() {
-		return dateTime;
+	public Date getManifestDate() {
+		return manifestDate;
 	}
 
-	public void setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
+	public void setManifestDate(Date manifestDate) {
+		this.manifestDate = manifestDate;
 	}
 
 	public Truck getTruckNumber() {
@@ -122,12 +121,12 @@ public class Manifest {
 		this.truckId = truckId;
 	}
 
-	public Branch getFrom() {
-		return from;
+	public Branch getFromBranch() {
+		return fromBranch;
 	}
 
-	public void setFrom(Branch from) {
-		this.from = from;
+	public void setFromBranch(Branch fromBranch) {
+		this.fromBranch = fromBranch;
 	}
 
 	public Integer getBranchId1() {
@@ -138,12 +137,12 @@ public class Manifest {
 		this.branchId1 = branchId1;
 	}
 
-	public Branch getTo() {
-		return to;
+	public Branch getToBranch() {
+		return toBranch;
 	}
 
-	public void setTo(Branch to) {
-		this.to = to;
+	public void setToBranch(Branch toBranch) {
+		this.toBranch = toBranch;
 	}
 
 	public Integer getBranchId2() {
@@ -180,13 +179,13 @@ public class Manifest {
 
 	@Override
 	public String toString() {
-		return "Manifest [id=" + id + ", manifestNumber=" + manifestNumber + ", dateTime=" + dateTime + ", truckNumber="
-				+ truckNumber + ", truckId=" + truckId + ", from=" + from + ", branchId1=" + branchId1 + ", to=" + to
-				+ ", branchId2=" + branchId2 + ", ewayBill=" + ewayBill + ", lastSerialNumber=" + lastSerialNumber
-				+ ", consignmentId=" + consignmentId + "]";
+		return "Manifest [id=" + id + ", manifestNumber=" + manifestNumber + ", manifestDate=" + manifestDate
+				+ ", truckNumber=" + truckNumber + ", truckId=" + truckId + ", fromBranch=" + fromBranch
+				+ ", branchId1=" + branchId1 + ", toBranch=" + toBranch + ", branchId2=" + branchId2 + ", ewayBill="
+				+ ewayBill + ", lastSerialNumber=" + lastSerialNumber + ", consignmentId=" + consignmentId + "]";
 	}
-	
-	
 
+	
+	
 	
 }
