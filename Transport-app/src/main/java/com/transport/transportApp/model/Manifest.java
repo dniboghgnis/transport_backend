@@ -68,7 +68,6 @@ public class Manifest {
 	private List<Consignment> consignmentId;
 	
 	
-	
 
 	public void setConsignmentId(List<Consignment> consignmentId) {
 		this.consignmentId = consignmentId;

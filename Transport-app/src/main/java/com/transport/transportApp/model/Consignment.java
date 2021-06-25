@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tbl_consigner")
+@Table(name = "tbl_consignment")
 public class Consignment {
 
 	@Id
@@ -24,21 +25,21 @@ public class Consignment {
 	@Column(name = "Cn_Number")
 	private int cnNumber;
 	
-	@Column(name = "Date_Time")
-	private Date dateTime;
+	@Column(name = "Booking_Date_Time")
+	private Date bookingDateTime;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Branch_Id_1")
+	@JoinColumn(name = "From_Branch")
 	private Branch from;
 	
-	@Column(name = "Branch_Id_1", insertable = false, updatable = false)
+	@Column(name = "From_Branch", insertable = false, updatable = false)
 	private Integer branchId1;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Branch_Id_2")
+	@JoinColumn(name = "To_Branch")
 	private Branch to;
 	
-	@Column(name = "Branch_Id_2", insertable = false, updatable = false)
+	@Column(name = "To_Branch", insertable = false, updatable = false)
 	private Integer branchId2;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -64,8 +65,11 @@ public class Consignment {
 	@Column(name = "Nature_Of_Goods")
 	private NatureOfGoods natureOfGoods;
 	
-	@Column(name = "Actual_Weight")
-	private double actualWeight;
+	@Column(name = "Private_Marks")
+	private String privateMarks;
+	
+	@Column(name = "Goods_Value")
+	private double goodsValue;
 	
 	@Column(name = "Invoice_Number")
 	private String invoiceNumber;
@@ -73,11 +77,17 @@ public class Consignment {
 	@Column(name = "Invoice_Date")
 	private Date invoiceDate;
 	
-	@Column(name = "Goods_Value")
-	private double goodsValue;
+	@Column(name = "Actual_Weight")
+	private double actualWeight;
 	
-	@Column(name = "Private_Marks")
-	private String privateMarks;
+	@Column(name = "Chargable_Weight")
+	private double chargableWeight;
+	
+	@Column(name = "Freight")
+	private double freight;
+	
+	@Column(name = "Rate_Per_Kg")
+	private double ratePerKg;
 	
 	@Column(name = "Billing")
 	private Billing billing;
@@ -91,14 +101,7 @@ public class Consignment {
 	@Column(name = "To_Pay")
 	private boolean toPay;
 	
-	@Column(name = "Freight")
-	private double freight;
 	
-	@Column(name = "Rate_Per_Kg")
-	private double ratePerKg;
-	
-	@Column(name = "Chargable_Weight")
-	private double chargableWeight;
 	
 	@Column(name = "Way_Bill_Number")
 	private int wayBillNumber;

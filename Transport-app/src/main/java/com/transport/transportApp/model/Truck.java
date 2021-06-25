@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.Table;
 
 @Entity
@@ -27,7 +28,8 @@ public class Truck {
 	
 	@Column(name = "Truck_Number")
 	private String truckNumber;
-
+	
+	
 	public int getId() {
 		return id;
 	}

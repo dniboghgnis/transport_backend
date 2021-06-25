@@ -29,11 +29,11 @@ public class Consigner {
 	private AccountType accountType;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Address_Id_1")
+	@JoinColumn(name = "Party_Address")
 	private Address partyAddress;
 	
-	@Column(name = "Address_Id_1", insertable = false, updatable = false)
-	private Integer partyAddressId1;
+	@Column(name = "Party_Address", insertable = false, updatable = false)
+	private Integer partyAddressId;
 	
 	@Column(name = "Opening_Balance")
 	private double openingBalance;
@@ -41,18 +41,14 @@ public class Consigner {
 	@Column(name = "Consigner_Name")
 	private String consignerName;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Address_Id_2")
-	private Address partyAddress2;
-	
-	@Column(name = "Address_Id_2", insertable = false, updatable = false)
-	private Integer partyAddressId2;
-	
 	@Column(name = "Tin_Number_Sst_No")
 	private String tinNumberSstNo;
 	
 	@Column(name = "Gst_Number")
 	private String gstNumber;
+
+	@Column(name = "Pan_Number")
+	private String panNumber;
 	
 	@Column(name = "To_Be_Billed")
 	private boolean toBeBilled;
@@ -61,18 +57,12 @@ public class Consigner {
 	private String billPartyName;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Address_Id_3")
-	private Address billPartyAddress1;
+	@JoinColumn(name = "Bill_Party_Address")
+	private Address billPartyAddress;
 	
-	@Column(name = "Address_Id_3", insertable = false, updatable = false)
-	private Integer partyAddressId3;
+	@Column(name = "Bill_Party_Address", insertable = false, updatable = false)
+	private Integer billPartyAddressId;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Address_Id_4")
-	private Address billPartyAddress2;
-	
-	@Column(name = "Address_Id_4", insertable = false, updatable = false)
-	private Integer partyAddressId4;
 	
 	@Column(name = "Account_Code")
 	private String accountCode;
@@ -80,8 +70,39 @@ public class Consigner {
 	@Column(name = "Bill_Party_Gst_Number")
 	private String billPartyGstNumber;
 	
+	@Column(name = "Bill_Party_Pan_Number")
+	private String billPartyPanNumber;
+	
 	@Column(name = "Description")
 	private String description;
+
+	public Consigner() {
+		
+	}
+	
+	public Consigner(int id, AccountType accountType, Address partyAddress, Integer partyAddressId,
+			double openingBalance, String consignerName, String tinNumberSstNo, String gstNumber, String panNumber,
+			boolean toBeBilled, String billPartyName, Address billPartyAddress, Integer billPartyAddressId,
+			String accountCode, String billPartyGstNumber, String billPartyPanNumber, String description) {
+		super();
+		this.id = id;
+		this.accountType = accountType;
+		this.partyAddress = partyAddress;
+		this.partyAddressId = partyAddressId;
+		this.openingBalance = openingBalance;
+		this.consignerName = consignerName;
+		this.tinNumberSstNo = tinNumberSstNo;
+		this.gstNumber = gstNumber;
+		this.panNumber = panNumber;
+		this.toBeBilled = toBeBilled;
+		this.billPartyName = billPartyName;
+		this.billPartyAddress = billPartyAddress;
+		this.billPartyAddressId = billPartyAddressId;
+		this.accountCode = accountCode;
+		this.billPartyGstNumber = billPartyGstNumber;
+		this.billPartyPanNumber = billPartyPanNumber;
+		this.description = description;
+	}
 
 	public int getId() {
 		return id;
@@ -107,6 +128,14 @@ public class Consigner {
 		this.partyAddress = partyAddress;
 	}
 
+	public Integer getPartyAddressId() {
+		return partyAddressId;
+	}
+
+	public void setPartyAddressId(Integer partyAddressId) {
+		this.partyAddressId = partyAddressId;
+	}
+
 	public double getOpeningBalance() {
 		return openingBalance;
 	}
@@ -121,14 +150,6 @@ public class Consigner {
 
 	public void setConsignerName(String consignerName) {
 		this.consignerName = consignerName;
-	}
-
-	public Address getPartyAddress2() {
-		return partyAddress2;
-	}
-
-	public void setPartyAddress2(Address partyAddress2) {
-		this.partyAddress2 = partyAddress2;
 	}
 
 	public String getTinNumberSstNo() {
@@ -147,6 +168,14 @@ public class Consigner {
 		this.gstNumber = gstNumber;
 	}
 
+	public String getPanNumber() {
+		return panNumber;
+	}
+
+	public void setPanNumber(String panNumber) {
+		this.panNumber = panNumber;
+	}
+
 	public boolean isToBeBilled() {
 		return toBeBilled;
 	}
@@ -163,20 +192,20 @@ public class Consigner {
 		this.billPartyName = billPartyName;
 	}
 
-	public Address getBillPartyAddress1() {
-		return billPartyAddress1;
+	public Address getBillPartyAddress() {
+		return billPartyAddress;
 	}
 
-	public void setBillPartyAddress1(Address billPartyAddress1) {
-		this.billPartyAddress1 = billPartyAddress1;
+	public void setBillPartyAddress(Address billPartyAddress) {
+		this.billPartyAddress = billPartyAddress;
 	}
 
-	public Address getBillPartyAddress2() {
-		return billPartyAddress2;
+	public Integer getBillPartyAddressId() {
+		return billPartyAddressId;
 	}
 
-	public void setBillPartyAddress2(Address billPartyAddress2) {
-		this.billPartyAddress2 = billPartyAddress2;
+	public void setBillPartyAddressId(Integer billPartyAddressId) {
+		this.billPartyAddressId = billPartyAddressId;
 	}
 
 	public String getAccountCode() {
@@ -195,6 +224,14 @@ public class Consigner {
 		this.billPartyGstNumber = billPartyGstNumber;
 	}
 
+	public String getBillPartyPanNumber() {
+		return billPartyPanNumber;
+	}
+
+	public void setBillPartyPanNumber(String billPartyPanNumber) {
+		this.billPartyPanNumber = billPartyPanNumber;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -202,53 +239,17 @@ public class Consigner {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-
-	public Integer getPartyAddressId1() {
-		return partyAddressId1;
-	}
-
-	public void setPartyAddressId1(Integer partyAddressId1) {
-		this.partyAddressId1 = partyAddressId1;
-	}
-
-	public Integer getPartyAddressId2() {
-		return partyAddressId2;
-	}
-
-	public void setPartyAddressId2(Integer partyAddressId2) {
-		this.partyAddressId2 = partyAddressId2;
-	}
-
-	public Integer getPartyAddressId3() {
-		return partyAddressId3;
-	}
-
-	public void setPartyAddressId3(Integer partyAddressId3) {
-		this.partyAddressId3 = partyAddressId3;
-	}
-
-	public Integer getPartyAddressId4() {
-		return partyAddressId4;
-	}
-
-	public void setPartyAddressId4(Integer partyAddressId4) {
-		this.partyAddressId4 = partyAddressId4;
-	}
 
 	@Override
 	public String toString() {
 		return "Consigner [id=" + id + ", accountType=" + accountType + ", partyAddress=" + partyAddress
-				+ ", partyAddressId1=" + partyAddressId1 + ", openingBalance=" + openingBalance + ", consignerName="
-				+ consignerName + ", partyAddress2=" + partyAddress2 + ", partyAddressId2=" + partyAddressId2
-				+ ", tinNumberSstNo=" + tinNumberSstNo + ", gstNumber=" + gstNumber + ", toBeBilled=" + toBeBilled
-				+ ", billPartyName=" + billPartyName + ", billPartyAddress1=" + billPartyAddress1 + ", partyAddressId3="
-				+ partyAddressId3 + ", billPartyAddress2=" + billPartyAddress2 + ", partyAddressId4=" + partyAddressId4
-				+ ", accountCode=" + accountCode + ", billPartyGstNumber=" + billPartyGstNumber + ", description="
-				+ description + "]";
+				+ ", partyAddressId=" + partyAddressId + ", openingBalance=" + openingBalance + ", consignerName="
+				+ consignerName + ", tinNumberSstNo=" + tinNumberSstNo + ", gstNumber=" + gstNumber + ", panNumber="
+				+ panNumber + ", toBeBilled=" + toBeBilled + ", billPartyName=" + billPartyName + ", billPartyAddress="
+				+ billPartyAddress + ", billPartyAddressId=" + billPartyAddressId + ", accountCode=" + accountCode
+				+ ", billPartyGstNumber=" + billPartyGstNumber + ", billPartyPanNumber=" + billPartyPanNumber
+				+ ", description=" + description + "]";
 	}
 
-	
 	
 }

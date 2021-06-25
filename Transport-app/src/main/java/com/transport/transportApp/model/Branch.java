@@ -1,6 +1,6 @@
 package com.transport.transportApp.model;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,23 +27,27 @@ public class Branch {
 	private String branchName;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Address_Id")
+	@JoinColumn(name = "Address")
 	private Address address;
 	
-	@Column(name = "Address_Id", insertable = false, updatable = false)
-	private Integer address_Id;
-	
+	@Column(name = "Address", insertable = false, updatable = false)
+	private Integer addressId;
+
 	@Column(name = "Local_Out")
 	private String localOut;
 	
-	
-
-	public Integer getAddress_Id() {
-		return address_Id;
+	public Branch() {
+		
 	}
 
-	public void setAddress_Id(Integer address_Id) {
-		this.address_Id = address_Id;
+	public Branch(int id, String branchCode, String branchName, Address address, Integer addressId,String localOut) {
+		super();
+		this.id = id;
+		this.branchCode = branchCode;
+		this.branchName = branchName;
+		this.address = address;
+		this.addressId = addressId;
+		this.localOut = localOut;
 	}
 
 	public int getId() {
@@ -79,6 +82,18 @@ public class Branch {
 		this.address = address;
 	}
 
+	public Integer getAddressId() {
+		return addressId;
+	}
+
+	public void setAddressId(Integer addressId) {
+		this.addressId = addressId;
+	}
+
+	
+
+
+
 	public String getLocalOut() {
 		return localOut;
 	}
@@ -90,8 +105,10 @@ public class Branch {
 	@Override
 	public String toString() {
 		return "Branch [id=" + id + ", branchCode=" + branchCode + ", branchName=" + branchName + ", address=" + address
-				+ ", localOut=" + localOut + "]";
+				+ ", addressId=" + addressId + ",  localOut=" + localOut + "]";
 	}
 	
+	
+
 	
 }
