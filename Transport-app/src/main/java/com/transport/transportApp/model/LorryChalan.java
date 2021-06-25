@@ -10,10 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
 
 @Entity
-@Table(name = "tbl_lorry_chalan")
 public class LorryChalan {
 	
 	@Id
@@ -21,8 +20,11 @@ public class LorryChalan {
 	@Column(name = "Lorry_Chalan_Id", unique = true, nullable = false)
 	private int id;
 	
-	@Column(name = "Date_Time")
-	private Date dateTime;
+	@Column(name = "Challan_Number")
+	private String challanNumber;
+	
+	@Column(name = "Challan_Date")
+	private Date challanDate;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "From")
@@ -74,12 +76,14 @@ public class LorryChalan {
 		
 	}
 
-	public LorryChalan(int id, Date dateTime, Branch from, Integer branchId1, Branch to, Integer branchId2,
-			Truck truckId, Integer truckId1, float totalWeight, float ratePerTon, float freight, float advancePaid,
-			float balanceRemaining, Branch payableAt, Integer branchId3, Date paymentDate) {
+
+	public LorryChalan(int id, String challanNumber, Date challanDate, Branch from, Integer branchId1, Branch to,
+			Integer branchId2, Truck truckId, Integer truckId1, float totalWeight, float ratePerTon, float freight,
+			float advancePaid, float balanceRemaining, Branch payableAt, Integer branchId3, Date paymentDate) {
 		super();
 		this.id = id;
-		this.dateTime = dateTime;
+		this.challanNumber = challanNumber;
+		this.challanDate = challanDate;
 		this.from = from;
 		this.branchId1 = branchId1;
 		this.to = to;
@@ -96,6 +100,28 @@ public class LorryChalan {
 		this.paymentDate = paymentDate;
 	}
 
+	 
+	
+	public String getChallanNumber() {
+		return challanNumber;
+	}
+
+
+	public void setChallanNumber(String challanNumber) {
+		this.challanNumber = challanNumber;
+	}
+
+
+	public Date getChallanDate() {
+		return challanDate;
+	}
+
+
+	public void setChallanDate(Date challanDate) {
+		this.challanDate = challanDate;
+	}
+
+
 	public int getId() {
 		return id;
 	}
@@ -104,13 +130,7 @@ public class LorryChalan {
 		this.id = id;
 	}
 
-	public Date getDateTime() {
-		return dateTime;
-	}
-
-	public void setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
-	}
+	
 
 	public Branch getFrom() {
 		return from;
@@ -226,7 +246,7 @@ public class LorryChalan {
 
 	@Override
 	public String toString() {
-		return "LorryChalan [id=" + id + ", dateTime=" + dateTime + ", from=" + from + ", branchId1=" + branchId1
+		return "LorryChalan [id=" + id + ", from=" + from + ", branchId1=" + branchId1
 				+ ", to=" + to + ", branchId2=" + branchId2 + ", truckId=" + truckId + ", truckId1=" + truckId1
 				+ ", totalWeight=" + totalWeight + ", ratePerTon=" + ratePerTon + ", freight=" + freight
 				+ ", advancePaid=" + advancePaid + ", balanceRemaining=" + balanceRemaining + ", payableAt=" + payableAt
