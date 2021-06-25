@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tbl_lorrychalan")
+@Table(name = "tbl_lorry_chalan")
 public class LorryChalan {
 	
 	@Id
@@ -38,8 +38,12 @@ public class LorryChalan {
 	@Column(name = "To", insertable = false, updatable = false)
 	private Integer branchId2;
 	
-	@Column(name = "Lorry_Number")
-	private String lorryNumber;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Truck_Id")
+	private Truck truckId;
+	
+	@Column(name = "Truck_Id", insertable = false, updatable = false)
+	private Integer truckId1;
 	
 	@Column(name = "Total_Weight")
 	private float totalWeight;
@@ -71,7 +75,7 @@ public class LorryChalan {
 	}
 
 	public LorryChalan(int id, Date dateTime, Branch from, Integer branchId1, Branch to, Integer branchId2,
-			String lorryNumber, float totalWeight, float ratePerTon, float freight, float advancePaid,
+			Truck truckId, Integer truckId1, float totalWeight, float ratePerTon, float freight, float advancePaid,
 			float balanceRemaining, Branch payableAt, Integer branchId3, Date paymentDate) {
 		super();
 		this.id = id;
@@ -80,7 +84,8 @@ public class LorryChalan {
 		this.branchId1 = branchId1;
 		this.to = to;
 		this.branchId2 = branchId2;
-		this.lorryNumber = lorryNumber;
+		this.truckId = truckId;
+		this.truckId1 = truckId1;
 		this.totalWeight = totalWeight;
 		this.ratePerTon = ratePerTon;
 		this.freight = freight;
@@ -139,12 +144,20 @@ public class LorryChalan {
 		this.branchId2 = branchId2;
 	}
 
-	public String getLorryNumber() {
-		return lorryNumber;
+	public Truck getTruckId() {
+		return truckId;
 	}
 
-	public void setLorryNumber(String lorryNumber) {
-		this.lorryNumber = lorryNumber;
+	public void setTruckId(Truck truckId) {
+		this.truckId = truckId;
+	}
+
+	public Integer getTruckId1() {
+		return truckId1;
+	}
+
+	public void setTruckId1(Integer truckId1) {
+		this.truckId1 = truckId1;
 	}
 
 	public float getTotalWeight() {
@@ -214,11 +227,12 @@ public class LorryChalan {
 	@Override
 	public String toString() {
 		return "LorryChalan [id=" + id + ", dateTime=" + dateTime + ", from=" + from + ", branchId1=" + branchId1
-				+ ", to=" + to + ", branchId2=" + branchId2 + ", lorryNumber=" + lorryNumber + ", totalWeight="
-				+ totalWeight + ", ratePerTon=" + ratePerTon + ", freight=" + freight + ", advancePaid=" + advancePaid
-				+ ", balanceRemaining=" + balanceRemaining + ", payableAt=" + payableAt + ", branchId3=" + branchId3
-				+ ", paymentDate=" + paymentDate + "]";
+				+ ", to=" + to + ", branchId2=" + branchId2 + ", truckId=" + truckId + ", truckId1=" + truckId1
+				+ ", totalWeight=" + totalWeight + ", ratePerTon=" + ratePerTon + ", freight=" + freight
+				+ ", advancePaid=" + advancePaid + ", balanceRemaining=" + balanceRemaining + ", payableAt=" + payableAt
+				+ ", branchId3=" + branchId3 + ", paymentDate=" + paymentDate + "]";
 	}
+	
 	
 	
 }
