@@ -25,17 +25,17 @@ public class LorryChalan {
 	private Date dateTime;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Branch_Id_1")
+	@JoinColumn(name = "From")
 	private Branch from;
 	
-	@Column(name = "Branch_Id_1", insertable = false, updatable = false)
+	@Column(name = "From", insertable = false, updatable = false)
 	private Integer branchId1;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Branch_Id_2")
-	private Branch To;
+	@JoinColumn(name = "To")
+	private Branch to;
 	
-	@Column(name = "Branch_Id_2", insertable = false, updatable = false)
+	@Column(name = "To", insertable = false, updatable = false)
 	private Integer branchId2;
 	
 	@Column(name = "Lorry_Number")
@@ -57,39 +57,38 @@ public class LorryChalan {
 	private float balanceRemaining;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Branch_Id_3")
+	@JoinColumn(name = "Payable_At")
 	private Branch payableAt;
 	
-	@Column(name = "Branch_Id_3", insertable = false, updatable = false)
+	@Column(name = "Payable_At", insertable = false, updatable = false)
 	private Integer branchId3;
 	
-	@Column(name = "Payable_Date")
-	private Date payableDate;
+	@Column(name = "Payment_Date")
+	private Date paymentDate;
 	
-	
-
-	public Integer getBranchId1() {
-		return branchId1;
+	public LorryChalan() {
+		
 	}
 
-	public void setBranchId1(Integer branchId1) {
+	public LorryChalan(int id, Date dateTime, Branch from, Integer branchId1, Branch to, Integer branchId2,
+			String lorryNumber, float totalWeight, float ratePerTon, float freight, float advancePaid,
+			float balanceRemaining, Branch payableAt, Integer branchId3, Date paymentDate) {
+		super();
+		this.id = id;
+		this.dateTime = dateTime;
+		this.from = from;
 		this.branchId1 = branchId1;
-	}
-
-	public Integer getBranchId2() {
-		return branchId2;
-	}
-
-	public void setBranchId2(Integer branchId2) {
+		this.to = to;
 		this.branchId2 = branchId2;
-	}
-
-	public Integer getBranchId3() {
-		return branchId3;
-	}
-
-	public void setBranchId3(Integer branchId3) {
+		this.lorryNumber = lorryNumber;
+		this.totalWeight = totalWeight;
+		this.ratePerTon = ratePerTon;
+		this.freight = freight;
+		this.advancePaid = advancePaid;
+		this.balanceRemaining = balanceRemaining;
+		this.payableAt = payableAt;
 		this.branchId3 = branchId3;
+		this.paymentDate = paymentDate;
 	}
 
 	public int getId() {
@@ -116,12 +115,28 @@ public class LorryChalan {
 		this.from = from;
 	}
 
+	public Integer getBranchId1() {
+		return branchId1;
+	}
+
+	public void setBranchId1(Integer branchId1) {
+		this.branchId1 = branchId1;
+	}
+
 	public Branch getTo() {
-		return To;
+		return to;
 	}
 
 	public void setTo(Branch to) {
-		To = to;
+		this.to = to;
+	}
+
+	public Integer getBranchId2() {
+		return branchId2;
+	}
+
+	public void setBranchId2(Integer branchId2) {
+		this.branchId2 = branchId2;
 	}
 
 	public String getLorryNumber() {
@@ -180,23 +195,30 @@ public class LorryChalan {
 		this.payableAt = payableAt;
 	}
 
-	public Date getPayableDate() {
-		return payableDate;
+	public Integer getBranchId3() {
+		return branchId3;
 	}
 
-	public void setPayableDate(Date payableDate) {
-		this.payableDate = payableDate;
+	public void setBranchId3(Integer branchId3) {
+		this.branchId3 = branchId3;
+	}
+
+	public Date getPaymentDate() {
+		return paymentDate;
+	}
+
+	public void setPaymentDate(Date paymentDate) {
+		this.paymentDate = paymentDate;
 	}
 
 	@Override
 	public String toString() {
 		return "LorryChalan [id=" + id + ", dateTime=" + dateTime + ", from=" + from + ", branchId1=" + branchId1
-				+ ", To=" + To + ", branchId2=" + branchId2 + ", lorryNumber=" + lorryNumber + ", totalWeight="
+				+ ", to=" + to + ", branchId2=" + branchId2 + ", lorryNumber=" + lorryNumber + ", totalWeight="
 				+ totalWeight + ", ratePerTon=" + ratePerTon + ", freight=" + freight + ", advancePaid=" + advancePaid
 				+ ", balanceRemaining=" + balanceRemaining + ", payableAt=" + payableAt + ", branchId3=" + branchId3
-				+ ", payableDate=" + payableDate + "]";
+				+ ", paymentDate=" + paymentDate + "]";
 	}
-
-
+	
 	
 }
