@@ -19,6 +19,10 @@ public class ConsignmentService {
 		return consignmentRepository.findAll();
 	}
 	
+	/**
+	public List<Consignment> getConsignmentByTruckInfo(String truckInfo){
+		return consignmentRepository.findByTruckInfo(truckInfo);
+	}**/
 	
 	public Consignment createConsignment(Consignment consignment) {
 		return consignmentRepository.save(consignment);

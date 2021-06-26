@@ -46,7 +46,7 @@ public class Consignee {
 	private String panNumber;
 	
 	@Column(name = "To_Be_Billed")
-	private boolean toBeBilled;
+	private Boolean toBeBilled;
 	
 	@Column(name = "Bill_Party_Name")
 	private String billPartyName;
@@ -76,7 +76,7 @@ public class Consignee {
 
 	public Consignee(int id, AccountType accountType, Address partyAddress, Integer partyAddressId,
 			double openingBalance, String consigneeName, String tinNumberSstNo, String gstNumber, String panNumber,
-			boolean toBeBilled, String billPartyName, Address billPartyAddress, Integer billPartyAddressId,
+			Boolean toBeBilled, String billPartyName, Address billPartyAddress, Integer billPartyAddressId,
 			String accountCode, String billPartyGstNumber, String billPartyPanNumber, String description) {
 		super();
 		this.id = id;
@@ -170,11 +170,11 @@ public class Consignee {
 		this.panNumber = panNumber;
 	}
 
-	public boolean isToBeBilled() {
+	public Boolean isToBeBilled() {
 		return toBeBilled;
 	}
 
-	public void setToBeBilled(boolean toBeBilled) {
+	public void setToBeBilled(Boolean toBeBilled) {
 		this.toBeBilled = toBeBilled;
 	}
 
