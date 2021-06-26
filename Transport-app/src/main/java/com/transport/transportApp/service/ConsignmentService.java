@@ -32,5 +32,28 @@ public class ConsignmentService {
 		}else
 			return consignment;
 	}
+	
+	/***Update an consignment for a given consignmentID***/
+	public Consignment updateConsignment(int consignmentId, Consignment consignment) {
+		
+		Optional<Consignment> addressOptional = consignmentRepository.findById(consignmentId);
+		
+		if(!addressOptional.isPresent()) {
+			throw new ConsignmentNotFoundException(consignmentId);
+		}else {
+			return consignmentRepository.save(consignment);
+		}
+	}
+	
+	/***Delete an address for a given consignmentID***/
+	public void deleteConsignment(int consignmentId) {
+		
+		Optional<Consignment> addressOptional = consignmentRepository.findById(consignmentId);
+		if(!addressOptional.isPresent()) {
+			throw new ConsignmentNotFoundException(consignmentId);
+		}else {
+			consignmentRepository.deleteById(consignmentId);
+		}
+	}
 
 }
