@@ -12,11 +12,10 @@ import com.transport.transportApp.model.Consignment;
 public interface ConsignmentRepository extends ExtendedRepository<Consignment, Integer>{
 
 	/**
-	@Query(value = "SELECT * FROM Consignment a WHERE truckInfo = ?1", nativeQuery = true)
-	ArrayList<Consignment> findByTruckInfo(String truckInfo);
+	@Query(value = "SELECT * FROM Consignment  WHERE $(fieldName)" , nativeQuery = tr)
+	ArrayList<Consignment> filterConsignmentString  );**/
 	
-	@Query(value = "SELECT * FROM Consignment WHERE deliveryStatus =1?" , nativeQuery = true)
-	ArrayList<Consignment> findByDeliveryStatus(String deliveryStatus);
-	**/
+	
+	
 
 }

@@ -4,15 +4,19 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
  
 
 @Entity
+@Table(name = "Consignment")
 public class Consignment {
 
 	@Id
@@ -60,6 +64,7 @@ public class Consignment {
 	@Column(name = "Unit")
 	private int unit;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "Nature_Of_Goods")
 	private NatureOfGoods natureOfGoods;
 	
@@ -99,37 +104,30 @@ public class Consignment {
 	@Column(name = "Del")
 	private double del; 	
 	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "Billing")
 	private Billing billing;
 	
 	@Column(name = "To_Be_Billed")
-	private boolean toBeBilled;
+	private Boolean toBeBilled;
 	
 	@Column(name = "Paid")
-	private boolean paid;
+	private Boolean paid;
 	
 	@Column(name = "To_Pay")
-	private boolean toPay;
+	private Boolean toPay;
 	
 	@Column(name = "Way_Bill_Number")
 	private int wayBillNumber;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Bill_Number")
-	private Bill billNumber;
-	
-	@Column(name = "Bill_Number", insertable = false, updatable = false)
-	private Integer billId;
+	@Column(name = "Bill_Number")
+	private String billNumber;
 	
 	@Column(name = "Bill_Date")
 	private Date billDate;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Mf_Number")
-	private Manifest mfNumber;
-	
-	@Column(name = "Mf_Number", insertable = false, updatable = false)
-	private Integer manifestId;
+	@Column(name = "Mf_Number")
+	private String mfNumber;
 	
 	@Column(name = "Mf_Date")
 	private Date mfDate;
@@ -168,6 +166,7 @@ public class Consignment {
 	@Column(name = "Remarks")
 	private String remarks;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "Delivery_Status")
 	private DeliveryStatus deliveryStatus;
 	
@@ -180,11 +179,10 @@ public class Consignment {
 			Integer consigneeId, int numberOfPackages, int unit, NatureOfGoods natureOfGoods, String privateMarks,
 			double goodsValue, String invoiceNumber, Date invoiceDate, double actualWeight, double chargableWeight,
 			double freight, double ratePerKg, double sur, double ham, double sta, double del, Billing billing,
-			boolean toBeBilled, boolean paid, boolean toPay, int wayBillNumber, Bill billNumber, Integer billId,
-			Date billDate, Manifest mfNumber, Integer manifestId, Date mfDate, Truck truckNumber, Integer truckId,
-			double billCollection, double transportDiff, double reBookFreight, Date deliveryDate, String drNumber,
-			Date paymentDate, double collectionAmount, int mrBillNumber, String remarks,
-			DeliveryStatus deliveryStatus) {
+			Boolean toBeBilled, Boolean paid, Boolean toPay, int wayBillNumber, String billNumber, Date billDate,
+			String mfNumber, Date mfDate, Truck truckNumber, Integer truckId, double billCollection,
+			double transportDiff, double reBookFreight, Date deliveryDate, String drNumber, Date paymentDate,
+			double collectionAmount, int mrBillNumber, String remarks, DeliveryStatus deliveryStatus) {
 		super();
 		this.id = id;
 		this.cnNumber = cnNumber;
@@ -218,10 +216,8 @@ public class Consignment {
 		this.toPay = toPay;
 		this.wayBillNumber = wayBillNumber;
 		this.billNumber = billNumber;
-		this.billId = billId;
 		this.billDate = billDate;
 		this.mfNumber = mfNumber;
-		this.manifestId = manifestId;
 		this.mfDate = mfDate;
 		this.truckNumber = truckNumber;
 		this.truckId = truckId;
@@ -453,27 +449,27 @@ public class Consignment {
 		this.billing = billing;
 	}
 
-	public boolean isToBeBilled() {
+	public Boolean isToBeBilled() {
 		return toBeBilled;
 	}
 
-	public void setToBeBilled(boolean toBeBilled) {
+	public void setToBeBilled(Boolean toBeBilled) {
 		this.toBeBilled = toBeBilled;
 	}
 
-	public boolean isPaid() {
+	public Boolean isPaid() {
 		return paid;
 	}
 
-	public void setPaid(boolean paid) {
+	public void setPaid(Boolean paid) {
 		this.paid = paid;
 	}
 
-	public boolean isToPay() {
+	public Boolean isToPay() {
 		return toPay;
 	}
 
-	public void setToPay(boolean toPay) {
+	public void setToPay(Boolean toPay) {
 		this.toPay = toPay;
 	}
 
@@ -485,20 +481,12 @@ public class Consignment {
 		this.wayBillNumber = wayBillNumber;
 	}
 
-	public Bill getBillNumber() {
+	public String getBillNumber() {
 		return billNumber;
 	}
 
-	public void setBillNumber(Bill billNumber) {
+	public void setBillNumber(String billNumber) {
 		this.billNumber = billNumber;
-	}
-
-	public Integer getBillId() {
-		return billId;
-	}
-
-	public void setBillId(Integer billId) {
-		this.billId = billId;
 	}
 
 	public Date getBillDate() {
@@ -509,20 +497,12 @@ public class Consignment {
 		this.billDate = billDate;
 	}
 
-	public Manifest getMfNumber() {
+	public String getMfNumber() {
 		return mfNumber;
 	}
 
-	public void setMfNumber(Manifest mfNumber) {
+	public void setMfNumber(String mfNumber) {
 		this.mfNumber = mfNumber;
-	}
-
-	public Integer getManifestId() {
-		return manifestId;
-	}
-
-	public void setManifestId(Integer manifestId) {
-		this.manifestId = manifestId;
 	}
 
 	public Date getMfDate() {
@@ -640,15 +620,13 @@ public class Consignment {
 				+ ", chargableWeight=" + chargableWeight + ", freight=" + freight + ", ratePerKg=" + ratePerKg
 				+ ", sur=" + sur + ", ham=" + ham + ", sta=" + sta + ", del=" + del + ", billing=" + billing
 				+ ", toBeBilled=" + toBeBilled + ", paid=" + paid + ", toPay=" + toPay + ", wayBillNumber="
-				+ wayBillNumber + ", billNumber=" + billNumber + ", billId=" + billId + ", billDate=" + billDate
-				+ ", mfNumber=" + mfNumber + ", manifestId=" + manifestId + ", mfDate=" + mfDate + ", truckNumber="
-				+ truckNumber + ", truckId=" + truckId + ", billCollection=" + billCollection + ", transportDiff="
-				+ transportDiff + ", reBookFreight=" + reBookFreight + ", deliveryDate=" + deliveryDate + ", drNumber="
-				+ drNumber + ", paymentDate=" + paymentDate + ", collectionAmount=" + collectionAmount
-				+ ", mrBillNumber=" + mrBillNumber + ", remarks=" + remarks + ", deliveryStatus=" + deliveryStatus
-				+ "]";
+				+ wayBillNumber + ", billNumber=" + billNumber + ", billDate=" + billDate + ", mfNumber=" + mfNumber
+				+ ", mfDate=" + mfDate + ", truckNumber=" + truckNumber + ", truckId=" + truckId + ", billCollection="
+				+ billCollection + ", transportDiff=" + transportDiff + ", reBookFreight=" + reBookFreight
+				+ ", deliveryDate=" + deliveryDate + ", drNumber=" + drNumber + ", paymentDate=" + paymentDate
+				+ ", collectionAmount=" + collectionAmount + ", mrBillNumber=" + mrBillNumber + ", remarks=" + remarks
+				+ ", deliveryStatus=" + deliveryStatus + "]";
 	}
-
 	
 	
 }

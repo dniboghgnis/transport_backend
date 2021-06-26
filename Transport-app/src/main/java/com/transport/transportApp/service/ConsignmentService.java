@@ -20,8 +20,8 @@ public class ConsignmentService {
 	}
 	
 	/**
-	public List<Consignment> getConsignmentByTruckInfo(String truckInfo){
-		return consignmentRepository.findByTruckInfo(truckInfo);
+	public List<Consignment> filterConsignment(String truckInfo){
+		return consignmentRepository.filterConsignment();
 	}**/
 	
 	public Consignment createConsignment(Consignment consignment) {
@@ -60,5 +60,7 @@ public class ConsignmentService {
 			consignmentRepository.deleteById(consignmentId);
 		}
 	}
+	
+	
 
 }
