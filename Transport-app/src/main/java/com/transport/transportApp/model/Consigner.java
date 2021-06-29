@@ -24,8 +24,9 @@ public class Consigner {
 	
 	
 	@Column(name = "Account_Type")
-	@Enumerated(EnumType.STRING)
-	private AccountType accountType;
+	//@Enumerated(EnumType.STRING)
+	private String accountType;
+	//private AccountType accountType;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Party_Address")
@@ -35,7 +36,7 @@ public class Consigner {
 	private Integer partyAddressId;
 	
 	@Column(name = "Opening_Balance")
-	private double openingBalance;
+	private Double openingBalance;
 	
 	@Column(name = "Consigner_Name")
 	private String consignerName;
@@ -50,7 +51,7 @@ public class Consigner {
 	private String panNumber;
 	
 	@Column(name = "To_Be_Billed")
-	private boolean toBeBilled;
+	private Boolean toBeBilled;
 	
 	@Column(name = "Bill_Party_Name")
 	private String billPartyName;
@@ -78,11 +79,11 @@ public class Consigner {
 	public Consigner() {
 		
 	}
-	
-	public Consigner(int id, AccountType accountType, Address partyAddress, Integer partyAddressId,
-			double openingBalance, String consignerName, String tinNumberSstNo, String gstNumber, String panNumber,
-			boolean toBeBilled, String billPartyName, Address billPartyAddress, Integer billPartyAddressId,
-			String accountCode, String billPartyGstNumber, String billPartyPanNumber, String description) {
+
+	public Consigner(int id, String accountType, Address partyAddress, Integer partyAddressId, Double openingBalance,
+			String consignerName, String tinNumberSstNo, String gstNumber, String panNumber, Boolean toBeBilled,
+			String billPartyName, Address billPartyAddress, Integer billPartyAddressId, String accountCode,
+			String billPartyGstNumber, String billPartyPanNumber, String description) {
 		super();
 		this.id = id;
 		this.accountType = accountType;
@@ -111,11 +112,11 @@ public class Consigner {
 		this.id = id;
 	}
 
-	public AccountType getAccountType() {
+	public String getAccountType() {
 		return accountType;
 	}
 
-	public void setAccountType(AccountType accountType) {
+	public void setAccountType(String accountType) {
 		this.accountType = accountType;
 	}
 
@@ -135,11 +136,11 @@ public class Consigner {
 		this.partyAddressId = partyAddressId;
 	}
 
-	public double getOpeningBalance() {
+	public Double getOpeningBalance() {
 		return openingBalance;
 	}
 
-	public void setOpeningBalance(double openingBalance) {
+	public void setOpeningBalance(Double openingBalance) {
 		this.openingBalance = openingBalance;
 	}
 
@@ -175,11 +176,11 @@ public class Consigner {
 		this.panNumber = panNumber;
 	}
 
-	public boolean isToBeBilled() {
+	public Boolean getToBeBilled() {
 		return toBeBilled;
 	}
 
-	public void setToBeBilled(boolean toBeBilled) {
+	public void setToBeBilled(Boolean toBeBilled) {
 		this.toBeBilled = toBeBilled;
 	}
 
@@ -249,6 +250,6 @@ public class Consigner {
 				+ ", billPartyGstNumber=" + billPartyGstNumber + ", billPartyPanNumber=" + billPartyPanNumber
 				+ ", description=" + description + "]";
 	}
-
+	
 	
 }

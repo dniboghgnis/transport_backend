@@ -25,7 +25,7 @@ public class Consignment {
 	private int id;
 	
 	@Column(name = "Cn_Number")
-	private int cnNumber;
+	private Integer cnNumber;
 	
 	@Column(name = "Booking_Date")
 	private Date bookingDateTime;
@@ -59,14 +59,15 @@ public class Consignment {
 	private Integer consigneeId;
 	
 	@Column(name = "Number_Of_Packages")
-	private int numberOfPackages;
+	private Integer numberOfPackages;
 	
 	@Column(name = "Unit")
-	private int unit;
+	private Integer unit;
 	
-	@Enumerated(EnumType.STRING)
+	//@Enumerated(EnumType.STRING)
 	@Column(name = "Nature_Of_Goods")
-	private NatureOfGoods natureOfGoods;
+	private String natureOfGoods;
+	//private NatureOfGoods natureOfGoods;
 	
 	@Column(name = "Private_Marks")
 	private String privateMarks;
@@ -81,32 +82,33 @@ public class Consignment {
 	private Date invoiceDate;
 	
 	@Column(name = "Actual_Weight")
-	private double actualWeight;
+	private Double actualWeight;
 	
 	@Column(name = "Chargable_Weight")
-	private double chargableWeight;
+	private Double chargableWeight;
 	
 	@Column(name = "Freight")
-	private double freight;
+	private Double freight;
 	
 	@Column(name = "Rate_Per_Kg")
-	private double ratePerKg;
+	private Double ratePerKg;
 	
 	@Column(name = "Sur")
-	private double sur;
+	private Double sur;
 	
 	@Column(name = "Ham")
-	private double ham;
+	private Double ham;
 	
 	@Column(name = "Sta")
-	private double sta;
+	private Double sta;
 	
 	@Column(name = "Del")
-	private double del; 	
+	private Double del; 	
 	
-	@Enumerated(EnumType.STRING)
+	//@Enumerated(EnumType.STRING)
 	@Column(name = "Billing")
-	private Billing billing;
+	private String billing;
+	//private Billing billing;
 	
 	@Column(name = "To_Be_Billed")
 	private Boolean toBeBilled;
@@ -118,7 +120,7 @@ public class Consignment {
 	private Boolean toPay;
 	
 	@Column(name = "Way_Bill_Number")
-	private int wayBillNumber;
+	private Integer wayBillNumber;
 	
 	@Column(name = "Bill_Number")
 	private String billNumber;
@@ -140,13 +142,13 @@ public class Consignment {
 	private Integer truckId;
 	
 	@Column(name = "Bill_Collection")
-	private double billCollection;
+	private Double billCollection;
 	
 	@Column(name = "Transport_Diff")
-	private double transportDiff;
+	private Double transportDiff;
 	
 	@Column(name = "Re_Book_Freight")
-	private double reBookFreight;
+	private Double reBookFreight;
 	
 	@Column(name = "Delivery_Date")
 	private Date deliveryDate;
@@ -158,31 +160,31 @@ public class Consignment {
 	private Date paymentDate;
 
 	@Column(name = "Collection_Amount")
-	private double collectionAmount;
+	private Double collectionAmount;
 	
 	@Column(name = "Mr_Bill_Number")
-	private int mrBillNumber;
+	private Integer mrBillNumber;
 	
 	@Column(name = "Remarks")
 	private String remarks;
 	
-	@Enumerated(EnumType.STRING)
+	//@Enumerated(EnumType.STRING)
 	@Column(name = "Delivery_Status")
-	private DeliveryStatus deliveryStatus;
+	private String deliveryStatus;
+	//private DeliveryStatus deliveryStatus;
 	
 	public Consignment() {
 		
 	}
-
-	public Consignment(int id, int cnNumber, Date bookingDateTime, Branch from, Integer branchId1, Branch to,
+	public Consignment(int id, Integer cnNumber, Date bookingDateTime, Branch from, Integer branchId1, Branch to,
 			Integer branchId2, Consigner consignerCode, Integer consignerId, Consignee consigneeCode,
-			Integer consigneeId, int numberOfPackages, int unit, NatureOfGoods natureOfGoods, String privateMarks,
-			double goodsValue, String invoiceNumber, Date invoiceDate, double actualWeight, double chargableWeight,
-			double freight, double ratePerKg, double sur, double ham, double sta, double del, Billing billing,
-			Boolean toBeBilled, Boolean paid, Boolean toPay, int wayBillNumber, String billNumber, Date billDate,
-			String mfNumber, Date mfDate, Truck truckNumber, Integer truckId, double billCollection,
-			double transportDiff, double reBookFreight, Date deliveryDate, String drNumber, Date paymentDate,
-			double collectionAmount, int mrBillNumber, String remarks, DeliveryStatus deliveryStatus) {
+			Integer consigneeId, Integer numberOfPackages, Integer unit, String natureOfGoods, String privateMarks,
+			double goodsValue, String invoiceNumber, Date invoiceDate, Double actualWeight, Double chargableWeight,
+			Double freight, Double ratePerKg, Double sur, Double ham, Double sta, Double del, String billing,
+			Boolean toBeBilled, Boolean paid, Boolean toPay, Integer wayBillNumber, String billNumber, Date billDate,
+			String mfNumber, Date mfDate, Truck truckNumber, Integer truckId, Double billCollection,
+			Double transportDiff, Double reBookFreight, Date deliveryDate, String drNumber, Date paymentDate,
+			Double collectionAmount, Integer mrBillNumber, String remarks, String deliveryStatus) {
 		super();
 		this.id = id;
 		this.cnNumber = cnNumber;
@@ -232,383 +234,288 @@ public class Consignment {
 		this.remarks = remarks;
 		this.deliveryStatus = deliveryStatus;
 	}
-
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public int getCnNumber() {
+	public Integer getCnNumber() {
 		return cnNumber;
 	}
-
-	public void setCnNumber(int cnNumber) {
+	public void setCnNumber(Integer cnNumber) {
 		this.cnNumber = cnNumber;
 	}
-
 	public Date getBookingDateTime() {
 		return bookingDateTime;
 	}
-
 	public void setBookingDateTime(Date bookingDateTime) {
 		this.bookingDateTime = bookingDateTime;
 	}
-
 	public Branch getFrom() {
 		return from;
 	}
-
 	public void setFrom(Branch from) {
 		this.from = from;
 	}
-
 	public Integer getBranchId1() {
 		return branchId1;
 	}
-
 	public void setBranchId1(Integer branchId1) {
 		this.branchId1 = branchId1;
 	}
-
 	public Branch getTo() {
 		return to;
 	}
-
 	public void setTo(Branch to) {
 		this.to = to;
 	}
-
 	public Integer getBranchId2() {
 		return branchId2;
 	}
-
 	public void setBranchId2(Integer branchId2) {
 		this.branchId2 = branchId2;
 	}
-
 	public Consigner getConsignerCode() {
 		return consignerCode;
 	}
-
 	public void setConsignerCode(Consigner consignerCode) {
 		this.consignerCode = consignerCode;
 	}
-
 	public Integer getConsignerId() {
 		return consignerId;
 	}
-
 	public void setConsignerId(Integer consignerId) {
 		this.consignerId = consignerId;
 	}
-
 	public Consignee getConsigneeCode() {
 		return consigneeCode;
 	}
-
 	public void setConsigneeCode(Consignee consigneeCode) {
 		this.consigneeCode = consigneeCode;
 	}
-
 	public Integer getConsigneeId() {
 		return consigneeId;
 	}
-
 	public void setConsigneeId(Integer consigneeId) {
 		this.consigneeId = consigneeId;
 	}
-
-	public int getNumberOfPackages() {
+	public Integer getNumberOfPackages() {
 		return numberOfPackages;
 	}
-
-	public void setNumberOfPackages(int numberOfPackages) {
+	public void setNumberOfPackages(Integer numberOfPackages) {
 		this.numberOfPackages = numberOfPackages;
 	}
-
-	public int getUnit() {
+	public Integer getUnit() {
 		return unit;
 	}
-
-	public void setUnit(int unit) {
+	public void setUnit(Integer unit) {
 		this.unit = unit;
 	}
-
-	public NatureOfGoods getNatureOfGoods() {
+	public String getNatureOfGoods() {
 		return natureOfGoods;
 	}
-
-	public void setNatureOfGoods(NatureOfGoods natureOfGoods) {
+	public void setNatureOfGoods(String natureOfGoods) {
 		this.natureOfGoods = natureOfGoods;
 	}
-
 	public String getPrivateMarks() {
 		return privateMarks;
 	}
-
 	public void setPrivateMarks(String privateMarks) {
 		this.privateMarks = privateMarks;
 	}
-
 	public double getGoodsValue() {
 		return goodsValue;
 	}
-
 	public void setGoodsValue(double goodsValue) {
 		this.goodsValue = goodsValue;
 	}
-
 	public String getInvoiceNumber() {
 		return invoiceNumber;
 	}
-
 	public void setInvoiceNumber(String invoiceNumber) {
 		this.invoiceNumber = invoiceNumber;
 	}
-
 	public Date getInvoiceDate() {
 		return invoiceDate;
 	}
-
 	public void setInvoiceDate(Date invoiceDate) {
 		this.invoiceDate = invoiceDate;
 	}
-
-	public double getActualWeight() {
+	public Double getActualWeight() {
 		return actualWeight;
 	}
-
-	public void setActualWeight(double actualWeight) {
+	public void setActualWeight(Double actualWeight) {
 		this.actualWeight = actualWeight;
 	}
-
-	public double getChargableWeight() {
+	public Double getChargableWeight() {
 		return chargableWeight;
 	}
-
-	public void setChargableWeight(double chargableWeight) {
+	public void setChargableWeight(Double chargableWeight) {
 		this.chargableWeight = chargableWeight;
 	}
-
-	public double getFreight() {
+	public Double getFreight() {
 		return freight;
 	}
-
-	public void setFreight(double freight) {
+	public void setFreight(Double freight) {
 		this.freight = freight;
 	}
-
-	public double getRatePerKg() {
+	public Double getRatePerKg() {
 		return ratePerKg;
 	}
-
-	public void setRatePerKg(double ratePerKg) {
+	public void setRatePerKg(Double ratePerKg) {
 		this.ratePerKg = ratePerKg;
 	}
-
-	public double getSur() {
+	public Double getSur() {
 		return sur;
 	}
-
-	public void setSur(double sur) {
+	public void setSur(Double sur) {
 		this.sur = sur;
 	}
-
-	public double getHam() {
+	public Double getHam() {
 		return ham;
 	}
-
-	public void setHam(double ham) {
+	public void setHam(Double ham) {
 		this.ham = ham;
 	}
-
-	public double getSta() {
+	public Double getSta() {
 		return sta;
 	}
-
-	public void setSta(double sta) {
+	public void setSta(Double sta) {
 		this.sta = sta;
 	}
-
-	public double getDel() {
+	public Double getDel() {
 		return del;
 	}
-
-	public void setDel(double del) {
+	public void setDel(Double del) {
 		this.del = del;
 	}
-
-	public Billing getBilling() {
+	public String getBilling() {
 		return billing;
 	}
-
-	public void setBilling(Billing billing) {
+	public void setBilling(String billing) {
 		this.billing = billing;
 	}
-
-	public Boolean isToBeBilled() {
+	public Boolean getToBeBilled() {
 		return toBeBilled;
 	}
-
 	public void setToBeBilled(Boolean toBeBilled) {
 		this.toBeBilled = toBeBilled;
 	}
-
-	public Boolean isPaid() {
+	public Boolean getPaid() {
 		return paid;
 	}
-
 	public void setPaid(Boolean paid) {
 		this.paid = paid;
 	}
-
-	public Boolean isToPay() {
+	public Boolean getToPay() {
 		return toPay;
 	}
-
 	public void setToPay(Boolean toPay) {
 		this.toPay = toPay;
 	}
-
-	public int getWayBillNumber() {
+	public Integer getWayBillNumber() {
 		return wayBillNumber;
 	}
-
-	public void setWayBillNumber(int wayBillNumber) {
+	public void setWayBillNumber(Integer wayBillNumber) {
 		this.wayBillNumber = wayBillNumber;
 	}
-
 	public String getBillNumber() {
 		return billNumber;
 	}
-
 	public void setBillNumber(String billNumber) {
 		this.billNumber = billNumber;
 	}
-
 	public Date getBillDate() {
 		return billDate;
 	}
-
 	public void setBillDate(Date billDate) {
 		this.billDate = billDate;
 	}
-
 	public String getMfNumber() {
 		return mfNumber;
 	}
-
 	public void setMfNumber(String mfNumber) {
 		this.mfNumber = mfNumber;
 	}
-
 	public Date getMfDate() {
 		return mfDate;
 	}
-
 	public void setMfDate(Date mfDate) {
 		this.mfDate = mfDate;
 	}
-
 	public Truck getTruckNumber() {
 		return truckNumber;
 	}
-
 	public void setTruckNumber(Truck truckNumber) {
 		this.truckNumber = truckNumber;
 	}
-
 	public Integer getTruckId() {
 		return truckId;
 	}
-
 	public void setTruckId(Integer truckId) {
 		this.truckId = truckId;
 	}
-
-	public double getBillCollection() {
+	public Double getBillCollection() {
 		return billCollection;
 	}
-
-	public void setBillCollection(double billCollection) {
+	public void setBillCollection(Double billCollection) {
 		this.billCollection = billCollection;
 	}
-
-	public double getTransportDiff() {
+	public Double getTransportDiff() {
 		return transportDiff;
 	}
-
-	public void setTransportDiff(double transportDiff) {
+	public void setTransportDiff(Double transportDiff) {
 		this.transportDiff = transportDiff;
 	}
-
-	public double getReBookFreight() {
+	public Double getReBookFreight() {
 		return reBookFreight;
 	}
-
-	public void setReBookFreight(double reBookFreight) {
+	public void setReBookFreight(Double reBookFreight) {
 		this.reBookFreight = reBookFreight;
 	}
-
 	public Date getDeliveryDate() {
 		return deliveryDate;
 	}
-
 	public void setDeliveryDate(Date deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
-
 	public String getDrNumber() {
 		return drNumber;
 	}
-
 	public void setDrNumber(String drNumber) {
 		this.drNumber = drNumber;
 	}
-
 	public Date getPaymentDate() {
 		return paymentDate;
 	}
-
 	public void setPaymentDate(Date paymentDate) {
 		this.paymentDate = paymentDate;
 	}
-
-	public double getCollectionAmount() {
+	public Double getCollectionAmount() {
 		return collectionAmount;
 	}
-
-	public void setCollectionAmount(double collectionAmount) {
+	public void setCollectionAmount(Double collectionAmount) {
 		this.collectionAmount = collectionAmount;
 	}
-
-	public int getMrBillNumber() {
+	public Integer getMrBillNumber() {
 		return mrBillNumber;
 	}
-
-	public void setMrBillNumber(int mrBillNumber) {
+	public void setMrBillNumber(Integer mrBillNumber) {
 		this.mrBillNumber = mrBillNumber;
 	}
-
 	public String getRemarks() {
 		return remarks;
 	}
-
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-
-	public DeliveryStatus getDeliveryStatus() {
+	public String getDeliveryStatus() {
 		return deliveryStatus;
 	}
-
-	public void setDeliveryStatus(DeliveryStatus deliveryStatus) {
+	public void setDeliveryStatus(String deliveryStatus) {
 		this.deliveryStatus = deliveryStatus;
 	}
-
 	@Override
 	public String toString() {
 		return "Consignment [id=" + id + ", cnNumber=" + cnNumber + ", bookingDateTime=" + bookingDateTime + ", from="

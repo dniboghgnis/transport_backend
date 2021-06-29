@@ -22,8 +22,9 @@ public class Consignee {
 	private int id;
 	
 	@Column(name = "Account_Type")
-	@Enumerated(EnumType.STRING)
-	private AccountType accountType;
+	//@Enumerated(EnumType.STRING)
+	private String accountType;
+	//private AccountType accountType;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Party_Address")
@@ -76,10 +77,10 @@ public class Consignee {
 		
 	}
 
-	public Consignee(int id, AccountType accountType, Address partyAddress, Integer partyAddressId,
-			double openingBalance, String consigneeName, String tinNumberSstNo, String gstNumber, String panNumber,
-			Boolean toBeBilled, String billPartyName, Address billPartyAddress, Integer billPartyAddressId,
-			String accountCode, String billPartyGstNumber, String billPartyPanNumber, String description) {
+	public Consignee(int id, String accountType, Address partyAddress, Integer partyAddressId, double openingBalance,
+			String consigneeName, String tinNumberSstNo, String gstNumber, String panNumber, Boolean toBeBilled,
+			String billPartyName, Address billPartyAddress, Integer billPartyAddressId, String accountCode,
+			String billPartyGstNumber, String billPartyPanNumber, String description) {
 		super();
 		this.id = id;
 		this.accountType = accountType;
@@ -108,11 +109,11 @@ public class Consignee {
 		this.id = id;
 	}
 
-	public AccountType getAccountType() {
+	public String getAccountType() {
 		return accountType;
 	}
 
-	public void setAccountType(AccountType accountType) {
+	public void setAccountType(String accountType) {
 		this.accountType = accountType;
 	}
 
@@ -172,7 +173,7 @@ public class Consignee {
 		this.panNumber = panNumber;
 	}
 
-	public Boolean isToBeBilled() {
+	public Boolean getToBeBilled() {
 		return toBeBilled;
 	}
 
@@ -246,7 +247,6 @@ public class Consignee {
 				+ ", billPartyGstNumber=" + billPartyGstNumber + ", billPartyPanNumber=" + billPartyPanNumber
 				+ ", description=" + description + "]";
 	}
-	
-	
 
+	
 }
